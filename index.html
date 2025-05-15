@@ -933,7 +933,7 @@
                             btn.className = 'bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-button whitespace-nowrap';
                         });
                         e.target.className = 'bg-primary text-white px-4 py-2 rounded-button whitespace-nowrap';
-                        if (category === 'thyristors') {
+                        if (category !== 'thyristors2') {
                             productsGrid.innerHTML = products.thyristors.map(product => createProductCard(product)).join('');
                         } else if (category === 'all') {
                             location.reload();
@@ -1008,7 +1008,7 @@
                     height = canvas.height = 400; // Altura fixa para a seção
 
                     points = [];
-                    const numPoints = 300; // Número de pontos (nós) do circuito
+                    const numPoints = 70; // Número de pontos (nós) do circuito
                     for (let i = 0; i < numPoints; i++) {
                         points.push({
                             x: Math.random() * width,
