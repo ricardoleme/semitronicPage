@@ -118,7 +118,8 @@
             <nav class="hidden md:flex items-center space-x-6">
                 <a href="#" class="text-white hover:text-primary transition-colors">Início</a>
                 <a href="#produtos" class="text-white hover:text-primary transition-colors">Produtos</a>
-                 <a href="https://loja.coronasemitronicbrasil.com.br/semicondutores" class="text-white hover:text-primary transition-colors">Loja Virtual</a>
+                <a href="https://loja.coronasemitronicbrasil.com.br/semicondutores"
+                    class="text-white hover:text-primary transition-colors">Loja Virtual</a>
                 <a href="#sobre" class="text-white hover:text-primary transition-colors">Sobre Nós</a>
                 <a href="#atuacao" class="text-white hover:text-primary transition-colors">Onde Atuamos</a>
                 <a href="#contato" class="text-white hover:text-primary transition-colors">Contato</a>
@@ -711,18 +712,18 @@
                 <div>
                     <div class="bg-gray-800 p-6 rounded-lg">
                         <h3 class="text-xl font-semibold mb-6">Envie uma Mensagem</h3>
-                        <form>
+                        <form id="whatsappForm">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                 <div>
                                     <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Nome</label>
-                                    <input type="text" id="name"
+                                    <input type="text" id="name" required
                                         class="w-full bg-gray-700 border-none rounded text-white px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
                                         placeholder="Seu nome">
                                 </div>
                                 <div>
                                     <label for="email"
                                         class="block text-sm font-medium text-gray-400 mb-1">E-mail</label>
-                                    <input type="email" id="email"
+                                    <input type="email" id="email" required
                                         class="w-full bg-gray-700 border-none rounded text-white px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
                                         placeholder="seu@email.com">
                                 </div>
@@ -738,18 +739,12 @@
                                 <label for="subject"
                                     class="block text-sm font-medium text-gray-400 mb-1">Assunto</label>
                                 <select id="subject"
-                                    class="w-full bg-gray-700 border-none rounded text-white px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none appearance-none pr-8 relative">
-                                    <option value="">Selecione um assunto</option>
-                                    <option value="cotacao">Solicitar Cotação</option>
-                                    <option value="suporte">Suporte Técnico</option>
-                                    <option value="parceria">Parceria Comercial</option>
-                                    <option value="outro">Outro</option>
+                                    class="w-full bg-gray-700 border-none rounded text-white px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none">
+                                    <option value="Solicitar Cotação">Solicitar Cotação</option>
+                                    <option value="Suporte Técnico">Suporte Técnico</option>
+                                    <option value="Parceria Comercial">Parceria Comercial</option>
+                                    <option value="Outro">Outro</option>
                                 </select>
-                                <div class="relative">
-                                    <div class="absolute right-3 top-[-28px] pointer-events-none">
-                                        <i class="ri-arrow-down-s-line ri-lg text-gray-400"></i>
-                                    </div>
-                                </div>
                             </div>
                             <div class="mb-6">
                                 <label for="message"
@@ -761,9 +756,10 @@
                             <button type="submit"
                                 class="w-full bg-primary hover:bg-primary/90 text-white py-3 px-6 rounded-button font-medium flex items-center justify-center whitespace-nowrap">
                                 <i class="ri-send-plane-line ri-lg mr-2"></i>
-                                Enviar Mensagem
+                                Enviar via WhatsApp
                             </button>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -877,6 +873,25 @@
 
     <!-- Google Translate Element invisível -->
     <div id="google_translate_element" style="position:absolute; top:-9999px; left:-9999px;"></div>
+    <!-- Form de Contato -->
+    <script>
+        document.getElementById("whatsappForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const nome = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const empresa = document.getElementById("company").value.trim();
+            const assunto = document.getElementById("subject").value;
+            const mensagem = document.getElementById("message").value.trim();
+
+            const texto = `Olá, gostaria de falar sobre:\n\n *Assunto:* ${assunto}\n*Nome:* ${nome}\n *Empresa:* ${empresa}\n *E-mail:* ${email}\n *Mensagem:* ${mensagem}`;
+
+            const telefone = "5519997654402"; // número do WhatsApp com DDI + DDD
+            const url = `https://wa.me/${telefone}?text=${encodeURIComponent(texto)}`;
+
+            window.open(url, "_blank");
+        });
+    </script>
 
     <!-- Inicializador do Google Translate -->
     <script type="text/javascript">
