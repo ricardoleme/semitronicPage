@@ -125,7 +125,7 @@
             <!-- Botões de Idioma -->
             <div class="flex items-center space-x-4">
                 <!-- Botão Espanhol -->
-                <a href="https://www.semitronicsemicondutores.com.br/#googtrans(pt|es)"
+                <a href="#"
                     class="block px-4 py-2 text-white hover:bg-gray-700 flex items-center" data-lang="es"
                     aria-label="Espanhol">
                     <!-- Bandeira da Espanha -->
@@ -137,7 +137,7 @@
                 </a>
 
                 <!-- Botão Inglês -->
-                <a href="https://www.semitronicsemicondutores.com.br/#googtrans(pt|en)"
+                <a href="#"
                     class="block px-4 py-2 text-white hover:bg-gray-700 flex items-center" data-lang="en"
                     aria-label="Inglês">
                     <!-- Bandeira do Reino Unido -->
@@ -886,6 +886,23 @@
     </script>
     <script type="text/javascript"
         src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script>
+    function setLanguage(lang) {
+        const cookieValue = `/auto/${lang}`;
+        document.cookie = `googtrans=${cookieValue};path=/`;
+        document.cookie = `googtrans=${cookieValue};domain=semitronicsemicondutores.com.br;path=/`;
+        location.reload();
+    }
+
+    document.querySelectorAll('[data-lang]').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const lang = this.getAttribute('data-lang');
+            setLanguage(lang);
+        });
+    });
+</script>
+
 
     <!-- Outros scripts do site -->
     <script>
