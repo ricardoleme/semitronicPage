@@ -125,8 +125,7 @@
             <!-- Botões de Idioma -->
             <div class="flex items-center space-x-4">
                 <!-- Botão Espanhol -->
-                <a href="#"
-                    class="block px-4 py-2 text-white hover:bg-gray-700 flex items-center" data-lang="es"
+                <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700 flex items-center" data-lang="es"
                     aria-label="Espanhol">
                     <!-- Bandeira da Espanha -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 750 500" class="mr-2">
@@ -137,8 +136,7 @@
                 </a>
 
                 <!-- Botão Inglês -->
-                <a href="#"
-                    class="block px-4 py-2 text-white hover:bg-gray-700 flex items-center" data-lang="en"
+                <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700 flex items-center" data-lang="en"
                     aria-label="Inglês">
                     <!-- Bandeira do Reino Unido -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 60 30" class="mr-2">
@@ -876,38 +874,44 @@
         <i class="ri-whatsapp-line ri-2x text-white"></i>
     </a>
 
-    <!-- Elemento do Google Translate (escondido) -->
-    <div id="google_translate_element" style="position: absolute; top: -9999px; left: -9999px;"></div>
+    <!-- Google Translate Element invisível -->
+    <div id="google_translate_element" style="position:absolute; top:-9999px; left:-9999px;"></div>
 
+    <!-- Inicializador do Google Translate -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({ pageLanguage: 'pt', includedLanguages: 'pt, es, en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-99322291-1' }, 'google_translate_element');
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                includedLanguages: 'pt,es,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
         }
     </script>
+
+    <!-- Script do Google -->
     <script type="text/javascript"
         src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        <script>
-    function setLanguage(lang) {
-        const cookieValue = `/auto/${lang}`;
-        document.cookie = `googtrans=${cookieValue};path=/`;
-        document.cookie = `googtrans=${cookieValue};domain=semitronicsemicondutores.com.br;path=/`;
-        location.reload();
-    }
 
-    document.querySelectorAll('[data-lang]').forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            const lang = this.getAttribute('data-lang');
-            setLanguage(lang);
-        });
-    });
-</script>
-
-
-    <!-- Outros scripts do site -->
+    <!-- Script para aplicar idioma via cookie -->
     <script>
+        function setLanguage(lang) {
+            const cookieValue = `/pt/${lang}`;
+            document.cookie = `googtrans=${cookieValue};path=/`;
+            document.cookie = `googtrans=${cookieValue};domain=semitronicsemicondutores.com.br;path=/`;
+            location.reload();
+        }
+
+
         // Código para produtos, animações, etc.
         document.addEventListener('DOMContentLoaded', function () {
+            /* Google Translate */
+            document.querySelectorAll('[data-lang]').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    setLanguage(lang);
+                });
+            });
             const products = {
                 thyristors: [
                     {
